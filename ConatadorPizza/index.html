@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva para a Quarta da Pizza</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Contagem Regressiva para a Quarta da Pizza! �</h1>
+        
+        <img class="pizza-img" src="https://cdn-icons-png.flaticon.com/512/3595/3595458.png" alt="Pizza">
+        
+        <div class="countdown" id="countdown"></div>
+        
+        <div class="message">
+            <p>Aguardando ansiosamente pelo dia 2 de julho para saborear deliciosas pizzas!</p>
+            <hr>
+            <p>🍕 Calabresa | 🍕 Carne Seca</p>
+        </div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            // Data alvo: 2 de julho de 2024
+            const pizzaDay = new Date('July 2, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = pizzaDay - now;
+            
+            // Cálculos para dias, horas, minutos e segundos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Exibe o resultado
+            document.getElementById("countdown").innerHTML = 
+                days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+            
+            // Se a contagem regressiva terminar
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById("countdown").innerHTML = "HOJE É QUARTA DA PIZZA! 🍕🎉";
+                document.getElementById("countdown").style.backgroundColor = "#4CAF50";
+            }
+        }
+        
+        // Atualiza a contagem a cada segundo
+        updateCountdown();
+        const countdownTimer = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
